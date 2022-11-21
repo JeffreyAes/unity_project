@@ -18,6 +18,9 @@ Different attack options
 -progression(?)
     based on kills?
     based on currency?
+    based on levels deep??
+
 
 # EXTRA EXTRA FEATURES
 -even more weapons
+-secret levels
