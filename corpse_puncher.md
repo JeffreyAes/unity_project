@@ -1,5 +1,4 @@
 # PROJECT IDEA
-3D=========
 Corpse Punching game
 # DESCRIPTION
 -Zombies will walk towards player

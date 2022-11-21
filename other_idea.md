@@ -1,0 +1,13 @@
+# PROJECT IDEA
+# DESCRIPTION
+
+
+# CORE GAMEPLAY
+
+**required
+# EXTRA FEATURES
+-sound
+-graphics
+
+# EXTRA EXTRA FEATURES
+
