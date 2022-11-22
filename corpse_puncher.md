@@ -35,4 +35,5 @@ Corpse Punching game
 -radar
 -projectile boosting/rocketjump-esque
 -good map
+-test
 
