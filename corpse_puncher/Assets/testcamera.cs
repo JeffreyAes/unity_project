@@ -25,20 +25,12 @@ public class testcamera : MonoBehaviour
         v = Math.Clamp(v, -90, 90);
 
         transform.localEulerAngles = new Vector3(v * -1, 0, 0);
-        print("My camera Y: " + transform.forward);
-
-
+        // print("My camera Y: " + transform.forward);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             //creates a new object 'punch' at this current object's location
             Instantiate(punch, gameObject.transform);
         }
-
-
-
-
-
-        // transform.localRotation = Quaternion.Euler(0,0,0);
     }
 }

@@ -6,7 +6,8 @@ public class kick : MonoBehaviour
 {
     public GameObject m_camera;
 
-    void RemoveObj(){
+    void RemoveObj()
+    {
         Destroy(gameObject);
     }
 
@@ -26,15 +27,20 @@ public class kick : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         print("kicked");
-        
+
         print(other.attachedRigidbody.CompareTag("Cube"));
 
-        //TODO: add *slight* random rotation on kick
-        if(other.attachedRigidbody.CompareTag("Cube")){
-            print("kicked a cube");
+        if (other.attachedRigidbody != null)
+        {
+            if (other.attachedRigidbody.CompareTag("Cube"))
+            {
+                print("kicked a cube");
 
-            // volleyball-like set
-            other.attachedRigidbody.velocity = new Vector3(0,10,0);
+                // volleyball-like set
+                other.attachedRigidbody.velocity = new Vector3(0, 10, 0);
+            }
         }
+        //TODO: add *slight* random rotation on kick
+
     }
 }
