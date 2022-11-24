@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class kick : MonoBehaviour
+public class Kick : MonoBehaviour
 {
     public GameObject m_camera;
 
@@ -11,36 +11,29 @@ public class kick : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        // //don't do this
+        // don't do this
         // m_camera = GameObject.Find("Main Camera");
-        //probably better than above code
 
 
-        //this is doing nothing
+        //sets camera to aim punched projectiles
         m_camera = GameObject.FindWithTag("MainCamera");
-        Invoke("RemoveObj", 0.04f);
+        Invoke("RemoveObj", 0.04f); //hitbox active for 4frames
     }
 
     void OnTriggerEnter(Collider other)
     {
         print("kicked");
 
-        print(other.attachedRigidbody.CompareTag("Cube"));
-
         if (other.attachedRigidbody != null)
         {
             if (other.attachedRigidbody.CompareTag("Cube"))
             {
                 print("kicked a cube");
-
-                // volleyball-like set
                 other.attachedRigidbody.velocity = new Vector3(0, 10, 0);
             }
         }
         //TODO: add *slight* random rotation on kick
-
     }
 }
