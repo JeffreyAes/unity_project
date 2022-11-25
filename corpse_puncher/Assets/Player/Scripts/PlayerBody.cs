@@ -7,12 +7,12 @@ using UnityEngine;
 //TODO: make script names readable
 public class PlayerBody : MonoBehaviour
 {
-    Rigidbody m_Rigidbody;
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float rotationSpeed = 100f;
-    private float horizontalSpeed = 2.0f;
     [SerializeField] private int jumps = 5;
     public GameObject kick;
+    Rigidbody m_Rigidbody;
+    private float horizontalSpeed = 2.0f;
 
 
     void Start()
