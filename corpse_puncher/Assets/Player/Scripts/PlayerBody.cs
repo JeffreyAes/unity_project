@@ -5,15 +5,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //TODO: make script names readable
-public class test : MonoBehaviour
+public class PlayerBody : MonoBehaviour
 {
-    Rigidbody m_Rigidbody;
-
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float rotationSpeed = 100f;
-    private float horizontalSpeed = 2.0f;
     [SerializeField] private int jumps = 5;
     public GameObject kick;
+    Rigidbody m_Rigidbody;
+    private float horizontalSpeed = 2.0f;
 
 
     void Start()
@@ -21,7 +20,6 @@ public class test : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float translation = Input.GetAxis("Vertical") * speed;
@@ -35,6 +33,8 @@ public class test : MonoBehaviour
         rotation *= Time.deltaTime;
 
 
+        //TODO: change from .transform.Translate()?
+        //into something that doesn't need deceleration
         if (Input.GetKey("w"))
         {
             m_Rigidbody.transform.Translate(0, 0, translation);
