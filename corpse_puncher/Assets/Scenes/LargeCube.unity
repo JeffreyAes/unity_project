@@ -378,6 +378,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2107760852817420473, guid: cfd0f118ff08a3249b66e16f7ac3c86a, type: 3}
+      propertyPath: Speed
+      value: -2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2107760852817420473, guid: cfd0f118ff08a3249b66e16f7ac3c86a, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 2074417483}
+    - target: {fileID: -2107760852817420473, guid: cfd0f118ff08a3249b66e16f7ac3c86a, type: 3}
+      propertyPath: minimumDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2350273993139063083, guid: cfd0f118ff08a3249b66e16f7ac3c86a, type: 3}
       propertyPath: m_Name
       value: Spitter
@@ -428,3 +440,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd0f118ff08a3249b66e16f7ac3c86a, type: 3}
+--- !u!4 &2074417483 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 548960698139078068, guid: 50fc11cef7781de43986a7090e7b1ab2, type: 3}
+  m_PrefabInstance: {fileID: 330611605}
+  m_PrefabAsset: {fileID: 0}
