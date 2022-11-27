@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 548960698139078073}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
   rotationSpeed: 100
   jumps: 5
   kick: {fileID: 6343560790188419716, guid: 8b25b37a5f2c61a4996c82df2b58811a, type: 3}
+  airTime: 0.1
 --- !u!136 &548960698139078073
 CapsuleCollider:
   m_ObjectHideFlags: 0
