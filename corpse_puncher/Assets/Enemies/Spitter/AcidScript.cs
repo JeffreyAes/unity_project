@@ -23,12 +23,11 @@ public class AcidScript : MonoBehaviour
 
 
 void OnTriggerEnter(Collider other) {
-    print("hi mom");
+    print("do trigger work");
 }
 
     void DestroyBullet(){
         Destroy(gameObject);
-        // print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
     }
 }
 
