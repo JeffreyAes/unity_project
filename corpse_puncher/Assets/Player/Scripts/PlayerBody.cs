@@ -12,7 +12,7 @@ public class PlayerBody : MonoBehaviour
     public GameObject kick;
     Rigidbody m_Rigidbody;
     private float horizontalSpeed = 2.0f;
-    public float airTime = 0.1f;
+    private float airTime = 0.2f;
     private float jumpCap;
 
 
@@ -80,23 +80,30 @@ public class PlayerBody : MonoBehaviour
             Instantiate(kick, gameObject.transform);
         }
 
-    }
 
-    void FixedUpdate()
-    {
+
         if (Input.GetKey("space"))
         {
             if (jumps > 0)
             {
                 if (Time.time < jumpCap)
                 {
-                    m_Rigidbody.velocity = new Vector3(0,0,0);
-                    m_Rigidbody.AddForce(0, 10, 0, ForceMode.VelocityChange);
+                    // m_Rigidbody.velocity = new Vector3(0,0,0);
+                    m_Rigidbody.AddForce(0, 70f * Time.deltaTime, 0, ForceMode.VelocityChange);
                 }
             }
-
         }
-        
+
+
+
+
+
+    }
+
+    void FixedUpdate()
+    {
+
+
 
 
         if (m_Rigidbody.velocity.y < 0)
