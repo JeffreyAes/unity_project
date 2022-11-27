@@ -7,33 +7,42 @@ public class SpitterScript : MonoBehaviour
 {
 
     public float raydist = 20f;
-    public GameObject SpitterMaterial;
-    public float minimumDistance;
-    public float Speed;
-    public float timeBetweenLaunch;
-    public float nextLaunchTime;
-    public Transform Player;
+    public GameObject Acid;
+    [SerializeField] private float minimumDistance = 5f;
+    public float Speed = 10f;
+    public float timeBetweenLaunch = 10f;
+    public float nextLaunchTime = 10f;
+    private GameObject Player;
+    private Transform PlayerLocation;
     void Start()
     {
-        //get player's position here
+        Player = GameObject.FindWithTag("Player");
+        PlayerLocation = Player.transform;
     }
 
     void Update()
     {
-            // lauching slime code 
-        if(Time.time > nextLaunchTime){
-            Instantiate(SpitterMaterial, transform.position, Quaternion.identity);
-            nextLaunchTime = Time.time + timeBetweenLaunch;
-        }
+        Vector3 pos = gameObject.transform.position;
+        Quaternion rot = Quaternion.Euler(transform.position.x, transform.position.y, transform.position.z);
+        // lauching slime code 
 
         //rotates direction towards the player:
-        if (Player != null){
+        if (Player != null)
+        {
 
-        transform.LookAt(Player);
-        // if the player is (distance) away from spitter it moves the opposite direction
-        if (Vector3.Distance(transform.position, Player.position) <  minimumDistance){
-            transform.position = Vector3.MoveTowards(transform.position, Player.position, Speed * Time.deltaTime);
+            transform.LookAt(PlayerLocation);
+        if (Time.time > nextLaunchTime)
+        {
+            Instantiate(Acid, pos, Quaternion.identity, gameObject.transform);
+            nextLaunchTime = Time.time + timeBetweenLaunch;
         }
+            // if the player is (distance) away from spitter it moves the opposite direction
+            if (Vector3.Distance(transform.position, PlayerLocation.position) < minimumDistance)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, PlayerLocation.position, Speed * -1 * Time.deltaTime);
+            } else {
+                transform.position = transform.position;
+            }
 
         }
 
@@ -43,7 +52,7 @@ public class SpitterScript : MonoBehaviour
         //  Physics.Raycast(ORIGIN,             DIRECTION,                    RAYCASTHIT,DISTANCE)
         if (Physics.Raycast(transform.position, gameObject.transform.forward, out hit, raydist))
         {
-            Debug.Log("object name is " + hit.collider.name);
+            // Debug.Log("object name is " + hit.collider.name);
         }
 
     }
