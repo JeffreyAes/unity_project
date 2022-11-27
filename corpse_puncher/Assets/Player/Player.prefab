@@ -134,6 +134,7 @@ MonoBehaviour:
   rotationSpeed: 100
   jumps: 5
   kick: {fileID: 6343560790188419716, guid: 8b25b37a5f2c61a4996c82df2b58811a, type: 3}
+  airTime: 0.1
 --- !u!136 &548960698139078073
 CapsuleCollider:
   m_ObjectHideFlags: 0

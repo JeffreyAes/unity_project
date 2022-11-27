@@ -4,15 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: make script names readable
 public class PlayerBody : MonoBehaviour
 {
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float rotationSpeed = 100f;
-    [SerializeField] private int jumps = 5;
+    [SerializeField] private int jumps = 1;
     public GameObject kick;
     Rigidbody m_Rigidbody;
     private float horizontalSpeed = 2.0f;
+    public float airTime = 0.1f;
+    private float jumpCap;
 
 
     void Start()
@@ -25,7 +26,7 @@ public class PlayerBody : MonoBehaviour
         float translation = Input.GetAxis("Vertical") * speed;
         float strafe = Input.GetAxis("Horizontal") * speed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-        
+
 
 
         translation *= Time.deltaTime;
@@ -33,8 +34,6 @@ public class PlayerBody : MonoBehaviour
         rotation *= Time.deltaTime;
 
 
-        //TODO: change from .transform.Translate()?
-        //into something that doesn't need deceleration
         if (Input.GetKey("w"))
         {
             m_Rigidbody.transform.Translate(0, 0, translation);
@@ -52,16 +51,19 @@ public class PlayerBody : MonoBehaviour
             m_Rigidbody.transform.Translate(strafe, 0, 0);
         }
 
+
+
         if (Input.GetKeyDown("space"))
         {
-            jumps--;
-            if (jumps > 0)
-            {
-                // m_Rigidbody.AddForce(0, 15, 0, ForceMode.VelocityChange);
-                m_Rigidbody.velocity = new Vector3(0, 11, 0);
-            }
+            jumpCap = Time.time + airTime;
         }
-        
+        if (Input.GetKeyUp("space"))
+        {
+            jumps--;
+            print("released jump");
+        }
+
+
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             m_Rigidbody.velocity = new Vector3(0, -50, 0);
@@ -82,15 +84,33 @@ public class PlayerBody : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Input.GetKey("space"))
+        {
+            if (jumps > 0)
+            {
+                if (Time.time < jumpCap)
+                {
+                    m_Rigidbody.velocity = new Vector3(0,0,0);
+                    m_Rigidbody.AddForce(0, 10, 0, ForceMode.VelocityChange);
+                }
+            }
+
+        }
+        
+
+
         if (m_Rigidbody.velocity.y < 0)
         {
+            // if(m_Rigidbody.velocity.y < -100f){
+            //     m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x,-100,m_Rigidbody.velocity.z);
+            // }
             m_Rigidbody.AddForce(0, m_Rigidbody.velocity.y * 1.5f, 0, ForceMode.Acceleration);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        jumps = 5;
+        jumps = 2;
     }
 
 }
