@@ -6,12 +6,15 @@ public class AcidScript : MonoBehaviour
 {
     private Vector3 forward;
     private Rigidbody rg_acid;
+    private GameObject Player;
     public float speed =10f;
     void Start()
     {
+        Player = GameObject.FindWithTag("Player");
         rg_acid = GetComponent<Rigidbody>();
         // grabbing the parents forward vector3 from instantiation
-        forward = transform.parent.forward;
+        transform.LookAt(Player.transform);
+        forward = transform.forward;
         print(forward);
         Invoke("DestroyBullet", 3.1f);
     }

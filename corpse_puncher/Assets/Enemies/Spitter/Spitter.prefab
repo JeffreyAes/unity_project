@@ -131,6 +131,6 @@ MonoBehaviour:
   raydist: 20
   Acid: {fileID: 7154784624009579840, guid: 21cb35cef64f07d42b133ae97ad78837, type: 3}
   minimumDistance: 5
-  Speed: 1
+  Speed: 10
   timeBetweenLaunch: 3
   nextLaunchTime: 1
