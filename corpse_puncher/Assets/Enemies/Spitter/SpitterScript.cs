@@ -31,16 +31,17 @@ public class SpitterScript : MonoBehaviour
         {
 
             transform.LookAt(PlayerLocation);
-        if (Time.time > nextLaunchTime)
-        {
-            Instantiate(Acid, pos, Quaternion.identity);
-            nextLaunchTime = Time.time + timeBetweenLaunch;
-        }
+            if (Time.time > nextLaunchTime)
+            {
+                Instantiate(Acid, pos, Quaternion.identity);
+                nextLaunchTime = Time.time + timeBetweenLaunch;
+            }
             // if the player is (distance) away from spitter it moves the opposite direction
             if (Vector3.Distance(transform.position, PlayerLocation.position) < minimumDistance)
             {
                 transform.position = Vector3.MoveTowards(transform.position, PlayerLocation.position, Speed * -1 * Time.deltaTime);
-            } else {
+            }
+            else {
                 transform.position = transform.position;
             }
 
