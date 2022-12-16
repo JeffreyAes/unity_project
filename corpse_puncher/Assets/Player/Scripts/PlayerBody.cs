@@ -7,71 +7,63 @@ using UnityEngine;
 public class PlayerBody : MonoBehaviour
 {
     [SerializeField] private float speed = 10.0f;
-    [SerializeField] private float rotationSpeed = 100f;
     [SerializeField] private int jumps = 1;
     public GameObject kick;
-    Rigidbody m_Rigidbody;
-    private float horizontalSpeed = 2.0f;
-    private float airTime = 0.2f;
-    private float jumpCap;
 
+    public float gravity = -20f;
+    private Vector3 velocity;
 
-    void Start()
-    {
-        m_Rigidbody = GetComponent<Rigidbody>();
-    }
+    //receives a transform of a groundCheck object
+    public Transform groundCheck;
+    //size of the checkSphere
+    [SerializeField] private float groundDist = 0.5f;
+    //checkSphere is looking for this
+    public LayerMask groundMask;
+    //is grounded
+    public bool isGrounded;
+
+    public CharacterController characterController;
 
     void Update()
     {
         float translation = Input.GetAxis("Vertical") * speed;
         float strafe = Input.GetAxis("Horizontal") * speed;
-        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
 
-
+        //for checking grounding
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
+        if (isGrounded && velocity.y < -2f)
+        {
+            print("I am grounded");
+            velocity.y = -2f;
+        }
+        else
+        {
+            //if in air, be affected by a downward force
+            print("I am airborne");
+            velocity.y += gravity * 5 * Time.deltaTime;
+            characterController.Move(velocity * Time.deltaTime);
+        }
 
         translation *= Time.deltaTime;
         strafe *= Time.deltaTime;
-        rotation *= Time.deltaTime;
 
+        //gets x and z vectors from ranges -1 to 1
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
-        if (Input.GetKey("w"))
+        //uses x and z vectors (x,0,0) and (0,0,z)
+        //and adds them for a cumulative transform
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        characterController.Move(move * speed * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            m_Rigidbody.transform.Translate(0, 0, translation);
-        }
-        if (Input.GetKey("s"))
-        {
-            m_Rigidbody.transform.Translate(0, 0, translation);
-        }
-        if (Input.GetKey("a"))
-        {
-            m_Rigidbody.transform.Translate(strafe, 0, 0);
-        }
-        if (Input.GetKey("d"))
-        {
-            m_Rigidbody.transform.Translate(strafe, 0, 0);
+            velocity.y = 30;
         }
 
 
 
-        if (Input.GetKeyDown("space"))
-        {
-            jumpCap = Time.time + airTime;
-        }
-        if (Input.GetKeyUp("space"))
-        {
-            jumps--;
-            print("released jump");
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            m_Rigidbody.velocity = new Vector3(0, -50, 0);
-        }
-
-        float h = horizontalSpeed * Input.GetAxis("Mouse X");
-        transform.Rotate(0, h, 0);
-        // print(transform.localEulerAngles);
 
 
 
@@ -79,45 +71,5 @@ public class PlayerBody : MonoBehaviour
         {
             Instantiate(kick, gameObject.transform);
         }
-
-
-
-        if (Input.GetKey("space"))
-        {
-            if (jumps > 0)
-            {
-                if (Time.time < jumpCap)
-                {
-                    // m_Rigidbody.velocity = new Vector3(0,0,0);
-                    m_Rigidbody.AddForce(0, 70f * Time.deltaTime, 0, ForceMode.VelocityChange);
-                }
-            }
-        }
-
-
-
-
-
     }
-
-    void FixedUpdate()
-    {
-
-
-
-
-        if (m_Rigidbody.velocity.y < 0)
-        {
-            // if(m_Rigidbody.velocity.y < -100f){
-            //     m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x,-100,m_Rigidbody.velocity.z);
-            // }
-            m_Rigidbody.AddForce(0, m_Rigidbody.velocity.y * 1.5f, 0, ForceMode.Acceleration);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        jumps = 2;
-    }
-
 }

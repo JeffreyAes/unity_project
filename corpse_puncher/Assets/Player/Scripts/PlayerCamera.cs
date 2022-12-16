@@ -7,10 +7,14 @@ public class PlayerCamera : MonoBehaviour
 {
 
     //mouse sens
-    [SerializeField] float vSens = 2.0f;
+    [SerializeField] private float mouseSens = 1000f;
+
+    public Transform playerBody;
+
+    float xRot = 0f;
+
+
     public GameObject punch;
-    public float raydist = 10f;
-    float v = 0;
     void Start(){
         //hides cursor on game start
         Cursor.visible = false;
@@ -18,18 +22,21 @@ public class PlayerCamera : MonoBehaviour
     }
     void Update()
     {
-        v += vSens * Input.GetAxis("Mouse Y");
-        v = Math.Clamp(v, -90, 90);
+        float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
 
-        transform.localEulerAngles = new Vector3(v * -1, 0, 0);
+        //look up and down
+        xRot -= mouseY;
+        xRot = Math.Clamp(xRot, -90f, 90f);
 
-        
+        transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        playerBody.Rotate(Vector3.up * mouseX);
+
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             Instantiate(punch, gameObject.transform);
         }
-        //
 
 
         //raycast test

@@ -14,10 +14,6 @@ public class Punch : MonoBehaviour
 
     void Start()
     {
-        // don't do this - computing intensive
-        // m_camera = GameObject.Find("Main Camera");
-
-        //sets camera to aim punched projectiles
         m_camera = GameObject.FindWithTag("MainCamera");
         Invoke("RemoveObj", 0.06f); //hitbox active for 6 frames
 
