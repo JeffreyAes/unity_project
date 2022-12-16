@@ -21,7 +21,7 @@ public class Punch : MonoBehaviour
         m_camera = GameObject.FindWithTag("MainCamera");
         Invoke("RemoveObj", 0.06f); //hitbox active for 6 frames
 
-        
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -30,9 +30,18 @@ public class Punch : MonoBehaviour
 
         if (other.attachedRigidbody != null)
         {
-            if (other.attachedRigidbody.CompareTag("Cube"))
+            //consolidate into a function
+            if (other.attachedRigidbody.CompareTag("Corpse"))
             {
-                print("punched a cube");
+                print("punched a corpse");
+                Destroy(other.gameObject);
+                Instantiate(bullet, pos, rot);
+
+                // other.attachedRigidbody.velocity = m_camera.transform.forward * 100;
+            }
+            else if (other.attachedRigidbody.CompareTag("EnemyProjectile"))
+            {
+                print("punched a projectile");
                 Destroy(other.gameObject);
                 Instantiate(bullet, pos, rot);
 

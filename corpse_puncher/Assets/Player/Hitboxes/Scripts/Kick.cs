@@ -28,9 +28,13 @@ public class Kick : MonoBehaviour
 
         if (other.attachedRigidbody != null)
         {
-            if (other.attachedRigidbody.CompareTag("Cube"))
+            //consolidate into a function
+            if (other.attachedRigidbody.CompareTag("Corpse"))
             {
-                print("kicked a cube");
+                print("kicked corpse");
+                other.attachedRigidbody.velocity = new Vector3(0, 10, 0);
+            } else if (other.attachedRigidbody.CompareTag("EnemyProjectile")){
+                print("kicked projectile");
                 other.attachedRigidbody.velocity = new Vector3(0, 10, 0);
             }
         }

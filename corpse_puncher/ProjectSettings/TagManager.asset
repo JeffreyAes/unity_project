@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cube
   - Bullet
   - EnemyProjectile
+  - Corpse
   layers:
   - Default
   - TransparentFX
