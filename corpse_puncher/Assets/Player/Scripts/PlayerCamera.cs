@@ -8,7 +8,7 @@ public class PlayerCamera : MonoBehaviour
 
     //mouse sens
     [SerializeField] private float mouseSens = 1000f;
-
+    public Animator anim;
     public Transform playerBody;
 
     float xRot = 0f;
@@ -19,6 +19,7 @@ public class PlayerCamera : MonoBehaviour
         //hides cursor on game start
         Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        anim = gameObject.GetComponentInChildren<Animator>();
     }
     void Update()
     {
@@ -35,6 +36,7 @@ public class PlayerCamera : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            anim.Play("Punch");
             Instantiate(punch, gameObject.transform);
         }
 
