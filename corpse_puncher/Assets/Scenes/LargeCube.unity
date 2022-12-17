@@ -447,6 +447,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9057645502063331014, guid: f6ee775ab54e8e84686050a23a957a1a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 581646509899313033, guid: f6ee775ab54e8e84686050a23a957a1a, type: 3}
       propertyPath: m_Name
       value: Runner

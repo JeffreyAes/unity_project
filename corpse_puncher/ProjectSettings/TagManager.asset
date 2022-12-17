@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - EnemyProjectile
   - Runner
+  - EnemyTag
+  - EnemyCamera
   layers:
   - Default
   - TransparentFX
@@ -15,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - WhatIsEnemy
+  - WhatIsPlayer
+  - WhatIsGround
   - 
   - 
   - 

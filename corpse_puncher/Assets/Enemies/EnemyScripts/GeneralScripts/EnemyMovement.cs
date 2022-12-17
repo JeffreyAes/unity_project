@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+
+
+
     private Transform target;
     private Rigidbody Enemybody;
     public float rotationSpeed = 3.0f;
@@ -17,19 +21,19 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         target = GameObject.FindWithTag("Player").transform;
+
         Enemybody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     void FixedUpdate()
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotationSpeed*Time.deltaTime);
-        
+        transform.LookAt(target);
+
         if (Vector3.Distance(transform.position, target.position) > maxDistance)
         {
             Enemybody.velocity = (transform.forward) * speed * Time.fixedDeltaTime;
@@ -39,4 +43,7 @@ public class EnemyMovement : MonoBehaviour
             Enemybody.velocity = Enemybody.velocity * 0.15f * Time.fixedDeltaTime;
         }
     }
+
+
+
 }
