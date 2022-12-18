@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -9057645502063331014}
   - component: {fileID: 5351653498299776211}
   - component: {fileID: 6304434305143645543}
+  - component: {fileID: 7598568212365710232}
   m_Layer: 0
   m_Name: Runner
   m_TagString: Runner
@@ -141,5 +142,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2415037fb86206444b175c48c92e7559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 7598568212365710232}
   rotationSpeed: 3
-  speed: 300
+  speed: 10
+--- !u!195 &7598568212365710232
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581646509899313033}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 7.08
+  m_Speed: 11.17
+  m_Acceleration: 5.95
+  avoidancePriority: 50
+  m_AngularSpeed: 180.77
+  m_StoppingDistance: 5.1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2.0000002
+  m_BaseOffset: 1.0000001
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

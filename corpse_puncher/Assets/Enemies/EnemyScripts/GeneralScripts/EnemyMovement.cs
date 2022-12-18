@@ -8,7 +8,11 @@ public class EnemyMovement : MonoBehaviour
 
 
 
+    Camera cam;
     private Transform target;
+    private NavMeshHit hit;
+    public NavMeshAgent agent;
+    private bool blocked = false;
     private Rigidbody Enemybody;
     public float rotationSpeed = 3.0f;
     public float speed = 10.0f;
@@ -23,25 +27,42 @@ public class EnemyMovement : MonoBehaviour
         target = GameObject.FindWithTag("Player").transform;
 
         Enemybody = GetComponent<Rigidbody>();
+        cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        blocked = NavMesh.Raycast(transform.position, target.position, out hit, NavMesh.AllAreas);
+        Debug.DrawLine(transform.position, target.position, blocked ? Color.red : Color.green);
+        // agent.SetDestination(target.position);
+        if (!blocked)
+            agent.SetDestination(hit.position);
+        else {
+        agent.SetDestination(target.position);
+        }
+        if (Vector3.Distance(transform.position, target.position) <= agent.stoppingDistance)
+        {
+            agent.isStopped = true;
+        }
+        else{
+            agent.isStopped = false;
+        }
+        
     }
 
     void FixedUpdate()
     {
-        transform.LookAt(target);
+        // transform.LookAt(target);
 
-        if (Vector3.Distance(transform.position, target.position) > maxDistance)
-        {
-            Enemybody.velocity = (transform.forward) * speed * Time.fixedDeltaTime;
-        }
-        if (Vector3.Distance(transform.position, target.position) <= minDistance)
-        {
-            Enemybody.velocity = Enemybody.velocity * 0.15f * Time.fixedDeltaTime;
-        }
+        // if (Vector3.Distance(transform.position, target.position) > maxDistance)
+        // {
+        //     Enemybody.velocity = (transform.forward) * speed * Time.fixedDeltaTime;
+        // }
+        // if (Vector3.Distance(transform.position, target.position) <= minDistance)
+        // {
+        //     Enemybody.velocity = Enemybody.velocity * 0.15f * Time.fixedDeltaTime;
+        // }
     }
 
 
