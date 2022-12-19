@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8320209484081911013}
   m_Layer: 0
   m_Name: Spitter
-  m_TagString: Untagged
+  m_TagString: Spitter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
