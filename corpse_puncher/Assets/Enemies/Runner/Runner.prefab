@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5351653498299776211}
   - component: {fileID: 6304434305143645543}
   - component: {fileID: 7598568212365710232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Runner
   m_TagString: Runner
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 32
   m_CollisionDetection: 0
 --- !u!114 &5351653498299776211
 MonoBehaviour:
@@ -130,6 +130,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196dbca3824f42346b388f06177c9752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 548960698139078068, guid: 50fc11cef7781de43986a7090e7b1ab2, type: 3}
+  agent: {fileID: 7598568212365710232}
+  rotationSpeed: 3
+  speed: 10
+  timeBetweenAttacks: 3
+  alreadyAttacked: 0
+  minDistance: 2
+  Health: 100
+  AttackDamage: 12
+  Slash: {fileID: 7694902357755348365, guid: 224564f3dbc21424ca8f5f2702cf72ee, type: 3}
 --- !u!114 &6304434305143645543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,9 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2415037fb86206444b175c48c92e7559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 548960698139078068, guid: 50fc11cef7781de43986a7090e7b1ab2, type: 3}
   agent: {fileID: 7598568212365710232}
   rotationSpeed: 3
   speed: 10
+  timeBetweenAttacks: 0
+  alreadyAttacked: 0
+  minDistance: 2
 --- !u!195 &7598568212365710232
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -154,16 +168,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 581646509899313033}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 7.08
-  m_Speed: 11.17
-  m_Acceleration: 5.95
+  m_Radius: 0.72
+  m_Speed: 8.38
+  m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 180.77
-  m_StoppingDistance: 5.1
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2.0000002
   m_BaseOffset: 1.0000001
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4

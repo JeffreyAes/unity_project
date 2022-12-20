@@ -14,6 +14,7 @@ public class PlayerBody : MonoBehaviour
     private float horizontalSpeed = 2.0f;
     private float airTime = 0.2f;
     private float jumpCap;
+    public float Health = 100f;
 
 
     void Start()
@@ -96,7 +97,10 @@ public class PlayerBody : MonoBehaviour
 
 
 
-
+        if (Health <= 0)
+        {
+            EndGame();
+        }
 
     }
 
@@ -120,4 +124,9 @@ public class PlayerBody : MonoBehaviour
         jumps = 2;
     }
 
+
+    void EndGame()
+    {
+        FindObjectOfType<GameManager>().GameOver();
+    }
 }

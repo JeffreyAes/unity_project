@@ -27,7 +27,11 @@ public class AcidScript : MonoBehaviour
 
 
 void OnTriggerEnter(Collider other) {
-    print("do trigger work");
+    // print("do trigger work");
+        if (other.gameObject.tag == "Runner")
+        {
+            counter = 0;
+        }
         counter ++;
         if (counter > 1)
         DestroyBullet();

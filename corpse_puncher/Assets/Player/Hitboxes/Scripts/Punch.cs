@@ -25,6 +25,7 @@ public class Punch : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        print("punched a punch a bunch");
         Vector3 pos = gameObject.transform.position;
         Quaternion rot = m_camera.transform.rotation;
 

@@ -9,7 +9,8 @@ public class EnemyMovement : MonoBehaviour
 
 
     Camera cam;
-    private Transform target;
+    public  Transform target;
+    private Transform bullet;
     private NavMeshHit hit;
     public NavMeshAgent agent;
     private bool blocked = false;
@@ -17,8 +18,11 @@ public class EnemyMovement : MonoBehaviour
     public float rotationSpeed = 3.0f;
     public float speed = 10.0f;
 
-    private float minDistance = 3.0f;
-    private float maxDistance = 4.0f;
+    public float timeBetweenAttacks;
+    public bool alreadyAttacked = false;
+
+    public float minDistance = 1f;
+    private float maxDistance = 100.0f;
 
 
     // Start is called before the first frame update
@@ -26,30 +30,41 @@ public class EnemyMovement : MonoBehaviour
     {
         target = GameObject.FindWithTag("Player").transform;
 
+
         Enemybody = GetComponent<Rigidbody>();
         cam = GetComponent<Camera>();
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
-        blocked = NavMesh.Raycast(transform.position, target.position, out hit, NavMesh.AllAreas);
-        Debug.DrawLine(transform.position, target.position, blocked ? Color.red : Color.green);
-        // agent.SetDestination(target.position);
-        if (!blocked)
-            agent.SetDestination(hit.position);
-        else {
-        agent.SetDestination(target.position);
+        if (Vector3.Distance(transform.position, target.position) < maxDistance)
+        {
+            transform.LookAt(target);
+            blocked = NavMesh.Raycast(transform.position, target.position, out hit, NavMesh.AllAreas);
+            Debug.DrawLine(transform.position, target.position, blocked ? Color.red : Color.green);
+            agent.SetDestination(target.position);
+
         }
-        if (Vector3.Distance(transform.position, target.position) <= agent.stoppingDistance)
+        if (Vector3.Distance(transform.position, target.position) < minDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
+        }
+
+        if (Vector3.Distance(transform.position, target.position) <= agent.stoppingDistance+0.1)
         {
             agent.isStopped = true;
         }
-        else{
+        else
+        {
             agent.isStopped = false;
         }
-        
+
     }
+
+    
 
     void FixedUpdate()
     {

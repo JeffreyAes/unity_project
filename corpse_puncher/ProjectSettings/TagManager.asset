@@ -12,6 +12,7 @@ TagManager:
   - EnemyCamera
   - Spitter
   - Punch
+  - Slash
   layers:
   - Default
   - TransparentFX
