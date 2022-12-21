@@ -17,6 +17,14 @@ public class HitStop : MonoBehaviour
         }
     }
 
+    //TODO:
+    //TODO:
+    //TODO:
+    //TODO: turn the hitstop class into a "camera effects" class
+    //TODO: that way, I can add screenshake and other "stuff" more conveniently
+    //TODO:
+    //TODO:
+
     public void Freeze(){
         _pendingFreezeDuration = duration;
     }

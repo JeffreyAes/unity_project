@@ -37,6 +37,7 @@ public class Punch : MonoBehaviour
                 //FIXME: consolidate into a function
                 anim.Play("PunchConnected");
                 hitStop.Freeze();
+                //TODO: add screenshake
                 Destroy(other.gameObject);
                 Instantiate(bullet, pos, rot);
             }
