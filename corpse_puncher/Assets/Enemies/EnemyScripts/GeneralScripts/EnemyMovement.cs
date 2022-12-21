@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
     public float speed = 10.0f;
 
     public float timeBetweenAttacks;
+    public float timeFirstAttack;
     public bool alreadyAttacked = false;
 
     public float minDistance = 1f;
@@ -68,16 +69,7 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // transform.LookAt(target);
 
-        // if (Vector3.Distance(transform.position, target.position) > maxDistance)
-        // {
-        //     Enemybody.velocity = (transform.forward) * speed * Time.fixedDeltaTime;
-        // }
-        // if (Vector3.Distance(transform.position, target.position) <= minDistance)
-        // {
-        //     Enemybody.velocity = Enemybody.velocity * 0.15f * Time.fixedDeltaTime;
-        // }
     }
 
 

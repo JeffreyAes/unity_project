@@ -11,23 +11,28 @@ public class PlayerCamera : MonoBehaviour
     public GameObject punch;
     public float raydist = 10f;
     float v = 0;
-    void Start(){
+    void Start()
+    {
         //hides cursor on game start
         Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
     {
-        v += vSens * Input.GetAxis("Mouse Y");
-        v = Math.Clamp(v, -90, 90);
-
-        transform.localEulerAngles = new Vector3(v * -1, 0, 0);
-
-        
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if (!PauseScreen.isPaused)
         {
-            Instantiate(punch, gameObject.transform);
+
+            v += vSens * Input.GetAxis("Mouse Y");
+            v = Math.Clamp(v, -90, 90);
+
+            transform.localEulerAngles = new Vector3(v * -1, 0, 0);
+
+
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Instantiate(punch, gameObject.transform);
+            }
         }
         //
 

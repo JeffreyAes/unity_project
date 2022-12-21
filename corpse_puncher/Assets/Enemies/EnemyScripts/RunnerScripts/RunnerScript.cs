@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class RunnerScript : EnemyMovement
 {
-    public float Health = 100f;
-    public float AttackDamage = 12f;
+    public int Health = 1;
+    public int AttackDamage = 1;
     public GameObject Slash;
 
 
@@ -20,7 +20,11 @@ public class RunnerScript : EnemyMovement
     {
         if (agent.isStopped == true)
         {
-            AttackPlayer();
+            Invoke("AttackPlayer", timeFirstAttack);
+        }
+        if (Health <= 0)
+        {
+            DestroyRunner();
         }
     }
 
@@ -38,6 +42,19 @@ public class RunnerScript : EnemyMovement
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
 
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Punch")
+        {
+            Health --;
+        }
+    }
+
+    void DestroyRunner()
+    {
+        Destroy(gameObject);
     }
 
     private void ResetAttack()

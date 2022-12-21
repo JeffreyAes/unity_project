@@ -6,8 +6,8 @@ public class Slash : MonoBehaviour
 {
     public GameObject Runner;
     public GameObject Player;
-    private float SlashDamage;
-    private float PlayerHealth;
+    private int SlashDamage;
+    private int PlayerHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class Slash : MonoBehaviour
         Runner = GameObject.FindWithTag("Runner");
         SlashDamage = Runner.GetComponent<RunnerScript>().AttackDamage;
         Player = GameObject.FindWithTag("Player");
-        PlayerHealth = Player.GetComponent<PlayerBody>().Health;
+        PlayerHealth = Player.GetComponent<PlayerBody>().currentHealth;
         Invoke("DestroySlash", 0.3f);
     }
 
@@ -34,8 +34,9 @@ public class Slash : MonoBehaviour
         {
             if (PlayerHealth > 0)
             {
-            other.gameObject.GetComponent<PlayerBody>().Health -= SlashDamage;
+            other.gameObject.GetComponent<PlayerBody>().currentHealth -= SlashDamage;
             print(PlayerHealth);
+            
             }
             DestroySlash();
         }

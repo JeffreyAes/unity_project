@@ -96,7 +96,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581646509899313033}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -135,10 +135,11 @@ MonoBehaviour:
   rotationSpeed: 3
   speed: 10
   timeBetweenAttacks: 3
+  timeFirstAttack: 2
   alreadyAttacked: 0
   minDistance: 2
-  Health: 100
-  AttackDamage: 12
+  Health: 1
+  AttackDamage: 1
   Slash: {fileID: 7694902357755348365, guid: 224564f3dbc21424ca8f5f2702cf72ee, type: 3}
 --- !u!114 &6304434305143645543
 MonoBehaviour:
@@ -156,7 +157,8 @@ MonoBehaviour:
   agent: {fileID: 7598568212365710232}
   rotationSpeed: 3
   speed: 10
-  timeBetweenAttacks: 0
+  timeBetweenAttacks: 3
+  timeFirstAttack: 2
   alreadyAttacked: 0
   minDistance: 2
 --- !u!195 &7598568212365710232

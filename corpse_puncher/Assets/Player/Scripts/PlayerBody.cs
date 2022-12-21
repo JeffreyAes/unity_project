@@ -14,93 +14,104 @@ public class PlayerBody : MonoBehaviour
     private float horizontalSpeed = 2.0f;
     private float airTime = 0.2f;
     private float jumpCap;
-    public float Health = 100f;
+    public int maxHealth = 3;
+    public int currentHealth;
+    public HealthBar healthbar;
 
 
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        currentHealth = maxHealth;
+        healthbar.SetMaxHealth(maxHealth);
     }
 
     void Update()
     {
-        float translation = Input.GetAxis("Vertical") * speed;
-        float strafe = Input.GetAxis("Horizontal") * speed;
-        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-
-
-
-        translation *= Time.deltaTime;
-        strafe *= Time.deltaTime;
-        rotation *= Time.deltaTime;
-
-
-        if (Input.GetKey("w"))
+        if (!PauseScreen.isPaused)
         {
-            m_Rigidbody.transform.Translate(0, 0, translation);
-        }
-        if (Input.GetKey("s"))
-        {
-            m_Rigidbody.transform.Translate(0, 0, translation);
-        }
-        if (Input.GetKey("a"))
-        {
-            m_Rigidbody.transform.Translate(strafe, 0, 0);
-        }
-        if (Input.GetKey("d"))
-        {
-            m_Rigidbody.transform.Translate(strafe, 0, 0);
-        }
+
+
+            float translation = Input.GetAxis("Vertical") * speed;
+            float strafe = Input.GetAxis("Horizontal") * speed;
+            float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
 
 
 
-        if (Input.GetKeyDown("space"))
-        {
-            jumpCap = Time.time + airTime;
-        }
-        if (Input.GetKeyUp("space"))
-        {
-            jumps--;
-            print("released jump");
-        }
+            translation *= Time.deltaTime;
+            strafe *= Time.deltaTime;
+            rotation *= Time.deltaTime;
 
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            m_Rigidbody.velocity = new Vector3(0, -50, 0);
-        }
-
-        float h = horizontalSpeed * Input.GetAxis("Mouse X");
-        transform.Rotate(0, h, 0);
-        // print(transform.localEulerAngles);
-
-
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Instantiate(kick, gameObject.transform);
-        }
-
-
-
-        if (Input.GetKey("space"))
-        {
-            if (jumps > 0)
+            if (Input.GetKey("w"))
             {
-                if (Time.time < jumpCap)
+                m_Rigidbody.transform.Translate(0, 0, translation);
+            }
+            if (Input.GetKey("s"))
+            {
+                m_Rigidbody.transform.Translate(0, 0, translation);
+            }
+            if (Input.GetKey("a"))
+            {
+                m_Rigidbody.transform.Translate(strafe, 0, 0);
+            }
+            if (Input.GetKey("d"))
+            {
+                m_Rigidbody.transform.Translate(strafe, 0, 0);
+            }
+
+
+
+            if (Input.GetKeyDown("space"))
+            {
+                jumpCap = Time.time + airTime;
+            }
+            if (Input.GetKeyUp("space"))
+            {
+                jumps--;
+                print("released jump");
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                m_Rigidbody.velocity = new Vector3(0, -50, 0);
+            }
+
+            float h = horizontalSpeed * Input.GetAxis("Mouse X");
+            transform.Rotate(0, h, 0);
+            // print(transform.localEulerAngles);
+
+
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Instantiate(kick, gameObject.transform);
+            }
+
+
+
+            if (Input.GetKey("space"))
+            {
+                if (jumps > 0)
                 {
-                    // m_Rigidbody.velocity = new Vector3(0,0,0);
-                    m_Rigidbody.AddForce(0, 70f * Time.deltaTime, 0, ForceMode.VelocityChange);
+                    if (Time.time < jumpCap)
+                    {
+                        // m_Rigidbody.velocity = new Vector3(0,0,0);
+                        m_Rigidbody.AddForce(0, 70f * Time.deltaTime, 0, ForceMode.VelocityChange);
+                    }
                 }
             }
+
+            healthbar.SetHealth(currentHealth);
+
+            if (currentHealth <= 0)
+            {
+                EndGame();
+            }
+
         }
 
-
-
-        if (Health <= 0)
-        {
-            EndGame();
-        }
 
     }
 
@@ -127,6 +138,8 @@ public class PlayerBody : MonoBehaviour
 
     void EndGame()
     {
+        transform.position = new Vector3(-1262, 44, -3373);
+
         FindObjectOfType<GameManager>().GameOver();
     }
 }

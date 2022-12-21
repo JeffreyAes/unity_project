@@ -7,20 +7,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameOverScreen GameOverScreen;
     bool gameHasEnded;
 
     public void GameOver()
     {
-        if(gameHasEnded == false)
+        if (gameHasEnded == false)
         {
-        gameHasEnded = true;
-        Debug.Log("Ending game lol");
-        Invoke("RestartGame", 3f);
+            gameHasEnded = true;
+            GameOverScreen.setUp();
+            // Debug.Log("Ending game lol");
+            // Invoke("RestartGame", 3f);
         }
     }
 
-    void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }  
+    
+    
 }
