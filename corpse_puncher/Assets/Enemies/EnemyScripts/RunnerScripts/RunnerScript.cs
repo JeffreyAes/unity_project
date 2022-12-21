@@ -28,7 +28,9 @@ public class RunnerScript : EnemyMovement
         }
     }
 
-
+// TODO:
+// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+// MAKE THE ANIMATION HERE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     public void AttackPlayer()
     {
         agent.SetDestination(transform.position);

@@ -16,7 +16,7 @@ public class Slash : MonoBehaviour
         SlashDamage = Runner.GetComponent<RunnerScript>().AttackDamage;
         Player = GameObject.FindWithTag("Player");
         PlayerHealth = Player.GetComponent<PlayerHealth>().currentHealth;
-        Invoke("DestroySlash", 1f);
+        Invoke("DestroySlash", 0.3f);
     }
 
     // Update is called once per frame
