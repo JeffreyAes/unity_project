@@ -12,6 +12,8 @@ public class PlayerBody : MonoBehaviour
     [SerializeField] private static float currentSpeed = defaultSpeed;
     public float gravity = -9.8f;
     private Vector3 velocity;
+    
+
 
 
 
