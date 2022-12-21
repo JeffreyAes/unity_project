@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cube
   - Bullet
   - EnemyProjectile
+  - Corpse
   layers:
   - Default
   - TransparentFX
@@ -14,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Ground
+  - Enemy
+  - Corpse
   - 
   - 
   - 
