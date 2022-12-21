@@ -8,18 +8,14 @@ public class PlayerCamera : MonoBehaviour
 
     //mouse sens
     [SerializeField] private float mouseSens = 1000f;
-    public Animator anim;
+    private float xRot = 0f;
+
     public Transform playerBody;
 
-    float xRot = 0f;
-
-
-    public GameObject punch;
     void Start(){
         //hides cursor on game start
         Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        anim = gameObject.GetComponentInChildren<Animator>();
     }
     void Update()
     {
@@ -30,28 +26,8 @@ public class PlayerCamera : MonoBehaviour
         xRot -= mouseY;
         xRot = Math.Clamp(xRot, -90f, 90f);
 
+        //look left and right (rotates the body)
         transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
-
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            anim.Play("Punch");
-            Instantiate(punch, gameObject.transform);
-        }
-
-
-        //raycast test
-        // RaycastHit hit; //hit is of type RaycastHit
-        // if (Physics.Raycast(transform.position, gameObject.transform.forward, out hit, raydist))
-        // {
-        //     Debug.Log("object name is " + hit.collider.name);
-        // }
-
     }
-
-    // void OnDrawGizmos()
-    // {
-    //     Debug.DrawRay(transform.position, gameObject.transform.forward * raydist, Color.green);
-    // }
 }

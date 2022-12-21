@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1795310698084280387}
   - component: {fileID: 3731144387221951463}
   - component: {fileID: 8638188887768771081}
+  - component: {fileID: -7469301909657520308}
   m_Layer: 0
   m_Name: Punch
   m_TagString: Untagged
@@ -111,3 +112,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 7946674898071252681, guid: 458e7c7e05626604fa8f3f38eeb0f2f5, type: 3}
+--- !u!114 &-7469301909657520308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414931699249974172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7e54912ae1d1c499eed12e4dd1fe8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.08
