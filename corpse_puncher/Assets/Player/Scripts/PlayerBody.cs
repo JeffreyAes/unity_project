@@ -6,26 +6,16 @@ using UnityEngine;
 
 public class PlayerBody : MonoBehaviour
 {
-<<<<<<< HEAD
-    [SerializeField] private float speed = 10.0f;
-    [SerializeField] private float rotationSpeed = 100f;
-    [SerializeField] private int jumps = 1;
-    public GameObject kick;
-    Rigidbody m_Rigidbody;
-    private float horizontalSpeed = 2.0f;
-    private float airTime = 0.2f;
-    private float jumpCap;
-    public int maxHealth = 3;
-    public int currentHealth;
-    public HealthBar healthbar;
-=======
     public CharacterController characterController;
     [SerializeField] private static float defaultSpeed = 12.0f;
     [SerializeField] private static float slideSpeed = defaultSpeed * 2;
     [SerializeField] private static float currentSpeed = defaultSpeed;
     public float gravity = -9.8f;
     private Vector3 velocity;
->>>>>>> main
+    private Rigidbody m_Rigidbody;
+    public int maxHealth = 3;
+    public int currentHealth;
+    public HealthBar healthbar;
 
 
 
@@ -51,12 +41,9 @@ public class PlayerBody : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD
         m_Rigidbody = GetComponent<Rigidbody>();
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
-=======
->>>>>>> main
     }
 
     void EnterSlide()
@@ -134,81 +121,6 @@ public class PlayerBody : MonoBehaviour
 
     void Update()
     {
-<<<<<<< HEAD
-        if (!PauseScreen.isPaused)
-        {
-
-
-            float translation = Input.GetAxis("Vertical") * speed;
-            float strafe = Input.GetAxis("Horizontal") * speed;
-            float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-
-
-
-            translation *= Time.deltaTime;
-            strafe *= Time.deltaTime;
-            rotation *= Time.deltaTime;
-
-
-            if (Input.GetKey("w"))
-            {
-                m_Rigidbody.transform.Translate(0, 0, translation);
-            }
-            if (Input.GetKey("s"))
-            {
-                m_Rigidbody.transform.Translate(0, 0, translation);
-            }
-            if (Input.GetKey("a"))
-            {
-                m_Rigidbody.transform.Translate(strafe, 0, 0);
-            }
-            if (Input.GetKey("d"))
-            {
-                m_Rigidbody.transform.Translate(strafe, 0, 0);
-            }
-
-
-
-            if (Input.GetKeyDown("space"))
-            {
-                jumpCap = Time.time + airTime;
-            }
-            if (Input.GetKeyUp("space"))
-            {
-                jumps--;
-                print("released jump");
-            }
-
-
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-            {
-                m_Rigidbody.velocity = new Vector3(0, -50, 0);
-            }
-
-            float h = horizontalSpeed * Input.GetAxis("Mouse X");
-            transform.Rotate(0, h, 0);
-            // print(transform.localEulerAngles);
-
-
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Instantiate(kick, gameObject.transform);
-            }
-
-
-
-            if (Input.GetKey("space"))
-            {
-                if (jumps > 0)
-                {
-                    if (Time.time < jumpCap)
-                    {
-                        // m_Rigidbody.velocity = new Vector3(0,0,0);
-                        m_Rigidbody.AddForce(0, 70f * Time.deltaTime, 0, ForceMode.VelocityChange);
-                    }
-                }
-=======
         //FIXME: consolidate this
         //without the offset, the groundcheck defaults to (0, 0 ,0) of the player, as opposed to (0, -0.7, 0) -where the ground check usually is
         standing = groundCheck.position;
@@ -259,7 +171,6 @@ public class PlayerBody : MonoBehaviour
             else
             {
                 Jump();
->>>>>>> main
             }
 
             healthbar.SetHealth(currentHealth);
@@ -271,21 +182,8 @@ public class PlayerBody : MonoBehaviour
 
         }
 
-<<<<<<< HEAD
-
-    }
-
-    void FixedUpdate()
-    {
-
-
-
-
-        if (m_Rigidbody.velocity.y < 0)
-=======
         //GROUND SLAM
         if (Input.GetKeyDown(KeyCode.LeftShift) && !IsGrounded())
->>>>>>> main
         {
             GroundSlam();
         }
@@ -312,7 +210,6 @@ public class PlayerBody : MonoBehaviour
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundDist);
     }
-<<<<<<< HEAD
 
 
     void EndGame()
@@ -321,7 +218,5 @@ public class PlayerBody : MonoBehaviour
 
         FindObjectOfType<GameManager>().GameOver();
     }
+
 }
-=======
-}
->>>>>>> main
