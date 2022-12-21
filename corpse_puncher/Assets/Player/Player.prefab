@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7008927977623520395}
   m_Layer: 0
   m_Name: PlayerCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,6 @@ GameObject:
   - component: {fileID: 3454968244172899100}
   - component: {fileID: 3454968244172899170}
   - component: {fileID: 3454968244172899171}
-  - component: {fileID: 203352797443733970}
   - component: {fileID: 1893772660051055298}
   m_Layer: 0
   m_Name: PlayerBody
@@ -216,17 +215,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f9b967f4daa3b41b87ea79de492203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumps: 1
+  characterController: {fileID: 3454968244172899171}
   gravity: -9.8
+  isGrounded: 0
+  isSliding: 0
   groundCheck: {fileID: 201538092688941422}
-  groundDist: 0.5
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  isGrounded: 0
-  isSliding: 0
-  characterController: {fileID: 3454968244172899171}
 --- !u!143 &3454968244172899171
 CharacterController:
   m_ObjectHideFlags: 0
@@ -245,22 +241,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &203352797443733970
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3454968244172899169}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!114 &1893772660051055298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kick: {fileID: 6343560790188419716, guid: 8b25b37a5f2c61a4996c82df2b58811a, type: 3}
+  anim: {fileID: 7376294029007429255}
 --- !u!1 &3454968245307852815
 GameObject:
   m_ObjectHideFlags: 0
