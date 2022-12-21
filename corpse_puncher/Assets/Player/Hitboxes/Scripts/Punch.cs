@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Punch : MonoBehaviour
 {
     private GameObject m_camera;
+    private HitStop hitStop;
     public GameObject bullet;
+    public Animator anim;
 
     void RemoveObj()
     {
+        //TODO: hit particles can occur
         Destroy(gameObject);
     }
 
     void Start()
     {
-        // don't do this - computing intensive
-        // m_camera = GameObject.Find("Main Camera");
-
-        //sets camera to aim punched projectiles
         m_camera = GameObject.FindWithTag("MainCamera");
+        anim = m_camera.GetComponentInChildren<Animator>();
+        hitStop = GetComponent<HitStop>();
         Invoke("RemoveObj", 0.06f); //hitbox active for 6 frames
-
-        
     }
+
     private void OnTriggerEnter(Collider other)
     {
         print("punched a punch a bunch");
@@ -31,13 +32,22 @@ public class Punch : MonoBehaviour
 
         if (other.attachedRigidbody != null)
         {
-            if (other.attachedRigidbody.CompareTag("Cube"))
+            anim.StopPlayback();
+            if (other.attachedRigidbody.CompareTag("Corpse"))
             {
-                print("punched a cube");
+                //FIXME: consolidate into a function
+                anim.Play("PunchConnected");
+                hitStop.Freeze();
+                //TODO: add screenshake
                 Destroy(other.gameObject);
                 Instantiate(bullet, pos, rot);
-
-                // other.attachedRigidbody.velocity = m_camera.transform.forward * 100;
+            }
+            else if (other.attachedRigidbody.CompareTag("EnemyProjectile"))
+            {
+                anim.Play("PunchConnected");
+                hitStop.Freeze();
+                Destroy(other.gameObject);
+                Instantiate(bullet, pos, rot);
             }
         }
     }

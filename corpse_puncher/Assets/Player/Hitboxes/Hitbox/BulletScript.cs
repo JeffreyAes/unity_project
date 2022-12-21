@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    Rigidbody rb_bullet;
+    private Rigidbody rb_bullet;
     private GameObject m_camera;
     private Vector3 forward;
+
     void RemoveObj()
     {
         Destroy(gameObject);
@@ -27,12 +28,16 @@ public class BulletScript : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        //this will remove objects of this tag
         if (other.collider.CompareTag("Untagged"))
         {
+            //TODO: maybe add particles
+            //TODO: add logic to deal damage rather than destroying something
             Destroy(gameObject);
         }
         else
         {
+            //bullets don't destroy themselves
             if (other.collider.CompareTag("Bullet"))
             {
                 return;

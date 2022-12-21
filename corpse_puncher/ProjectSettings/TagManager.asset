@@ -4,15 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cube
   - Bullet
   - EnemyProjectile
+<<<<<<< HEAD
   - Runner
   - EnemyTag
   - EnemyCamera
   - Spitter
   - Punch
   - Slash
+=======
+  - Corpse
+>>>>>>> main
   layers:
   - Default
   - TransparentFX
@@ -20,10 +23,17 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< HEAD
   - WhatIsEnemy
   - WhatIsPlayer
   - WhatIsGround
   - WhatIsWall
+=======
+  - Ground
+  - Enemy
+  - Corpse
+  - 
+>>>>>>> main
   - 
   - 
   - 
