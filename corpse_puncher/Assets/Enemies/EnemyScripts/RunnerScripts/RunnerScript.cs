@@ -8,14 +8,9 @@ public class RunnerScript : EnemyMovement
     public int Health = 1;
     public int AttackDamage = 1;
     public GameObject Slash;
+    private Vector3 pos;
+    public GameObject Corpse;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (agent.isStopped == true)
@@ -28,18 +23,21 @@ public class RunnerScript : EnemyMovement
         }
     }
 
-// TODO:
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-// MAKE THE ANIMATION HERE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    // TODO:
+    // MAKE THE ANIMATION HERE
+    // import animator
+    // add animator field
+    //
     public void AttackPlayer()
     {
+        pos = gameObject.transform.position;
         agent.SetDestination(transform.position);
         if (!alreadyAttacked)
         {
             // print("yoooooooooooo");
             Rigidbody rb = Instantiate(Slash, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward *10f, ForceMode.Impulse);
-            rb.AddForce(transform.up *3f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 3f, ForceMode.Impulse);
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -48,11 +46,13 @@ public class RunnerScript : EnemyMovement
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Punch")
+        if (other.gameObject.tag == "Attack")
         {
-            Health --;
+            Instantiate(Corpse, pos, Quaternion.identity);
+            Health--;
         }
     }
+
 
     void DestroyRunner()
     {

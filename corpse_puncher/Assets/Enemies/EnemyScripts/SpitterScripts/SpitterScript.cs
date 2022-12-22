@@ -8,24 +8,28 @@ public class SpitterScript : MonoBehaviour
 
     public float raydist = 20f;
     public GameObject Acid;
+    public GameObject Corpse;
     [SerializeField] private float minimumDistance = 5f;
     [SerializeField] private float maxDistance = 100f;
-    public float Speed = 10f;
+    [SerializeField] private float Speed = 2f;
     public float timeBetweenLaunch = 10f;
     public float nextLaunchTime = 10f;
+    private Vector3 pos;
     private GameObject Player;
     private Transform PlayerLocation;
 
     public int Health = 1;
     void Start()
     {
+        Speed = 2f;
+
         Player = GameObject.FindWithTag("Player");
         PlayerLocation = Player.transform;
     }
 
     void Update()
     {
-        Vector3 pos = gameObject.transform.position;
+        pos = gameObject.transform.position;
         Quaternion rot = Quaternion.Euler(transform.position.x, transform.position.y, transform.position.z);
         // lauching slime code 
 
@@ -51,8 +55,18 @@ public class SpitterScript : MonoBehaviour
                 transform.position = transform.position;
             }
 
+            
+            if (Health <= 0)
+            {
+                DestroySpitter();
+            }
+
         }
 
+        void DestroySpitter()
+        {
+            Destroy(gameObject);
+        }
         //update player's position here
 
         RaycastHit hit; //hit is of type RaycastHit
@@ -61,7 +75,15 @@ public class SpitterScript : MonoBehaviour
         {
             // Debug.Log("object name is " + hit.collider.name);
         }
-
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Attack")
+        {
+            Instantiate(Corpse, pos, Quaternion.identity);
+            Health--;
+        }
     }
 
     void OnDrawGizmos()
