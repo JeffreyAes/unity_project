@@ -193,6 +193,27 @@ public class PlayerBody : MonoBehaviour
         }
     }
 
+
+// TODO:DON PLEASE FIX THIS COLLISION ITS HAUNTING ME!!!!!!!!!!!!!!!!!!
+    void OnTriggerEnter(Collider other)
+    {
+        if(gameObject.tag == "KillFloor")
+        {
+            print("am i colliding with the floor, if so you should see me!");
+            EndGame();
+        }
+    }
+
+
+
+
+    void EndGame()
+    {
+
+        FindObjectOfType<GameManager>().GameOver();
+    }
+
+
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundDist);

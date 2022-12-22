@@ -12,6 +12,7 @@ TagManager:
   - Spitter
   - GameManager
   - Punch
+  - KillFloor
   layers:
   - Default
   - TransparentFX
