@@ -7,6 +7,9 @@ TagManager:
   - Bullet
   - EnemyProjectile
   - Corpse
+  - Slash
+  - Runner
+  - Spitter
   layers:
   - Default
   - TransparentFX
@@ -17,8 +20,8 @@ TagManager:
   - Ground
   - Enemy
   - Corpse
-  - 
-  - 
+  - Background
+  - Obstacle
   - 
   - 
   - 

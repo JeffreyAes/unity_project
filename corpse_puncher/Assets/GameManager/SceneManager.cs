@@ -22,4 +22,5 @@ public class EditorShortCutKeys : ScriptableObject
         Debug.Break();
     }
 
+
 }

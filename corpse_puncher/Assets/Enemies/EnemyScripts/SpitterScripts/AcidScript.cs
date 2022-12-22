@@ -8,6 +8,7 @@ public class AcidScript : MonoBehaviour
     private Rigidbody rg_acid;
     private GameObject Player;
     public float speed =10f;
+    private int counter = 0;
     void Start()
     {
         Player = GameObject.FindWithTag("Player");
@@ -26,11 +27,24 @@ public class AcidScript : MonoBehaviour
 
 
 void OnTriggerEnter(Collider other) {
-    print("do trigger work");
+    // print("do trigger work");
+        if (other.gameObject.tag == "Runner")
+        {
+            counter = 0;
+        }
+        counter ++;
+        if (counter > 1)
+        DestroyBullet();
 }
 
     void DestroyBullet(){
+        counter = 0;
         Destroy(gameObject);
+    }
+
+    void DeflectBullet()
+    {
+        transform.position = Vector3.Reflect(transform.position, Vector3.left);
     }
 }
 
