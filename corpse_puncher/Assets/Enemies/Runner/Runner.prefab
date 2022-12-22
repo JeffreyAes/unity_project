@@ -134,7 +134,7 @@ MonoBehaviour:
   target: {fileID: 3454968245307852814, guid: 15a70cc98573d924cac24fc8ac5c8760, type: 3}
   agent: {fileID: 7598568212365710232}
   rotationSpeed: 3
-  speed: 10
+  speed: 80
   timeBetweenAttacks: 3
   timeFirstAttack: 2
   alreadyAttacked: 0
@@ -174,7 +174,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.72
-  m_Speed: 8.38
+  m_Speed: 15
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
