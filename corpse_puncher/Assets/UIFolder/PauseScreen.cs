@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class PauseScreen : MonoBehaviour
 {
     public GameObject PauseMenu;
+    private GameObject GameManager;
     public static bool isPaused;
     void Start()
     {
         PauseMenu.SetActive(false);
-        
+
+        GameManager = GameObject.FindWithTag("GameManager");
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class PauseScreen : MonoBehaviour
             }
             else
             {
+                if(GameManager.GetComponent<GameManager>().gameHasEnded == false)
                 PauseGame();
             }
         }
@@ -31,11 +34,13 @@ public class PauseScreen : MonoBehaviour
 
     public void PauseGame()
     {
+        
         PauseMenu.SetActive(true);
         isPaused = true;
         Cursor.visible = true;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
+        
         
     }
 
