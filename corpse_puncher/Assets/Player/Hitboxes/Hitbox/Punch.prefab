@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7469301909657520308}
   m_Layer: 0
   m_Name: Punch
-  m_TagString: Punch
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,6 +13,7 @@ TagManager:
   - GameManager
   - Punch
   - KillFloor
+  - Attack
   layers:
   - Default
   - TransparentFX
