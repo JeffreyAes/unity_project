@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Runner: {fileID: 581646509899313033, guid: f6ee775ab54e8e84686050a23a957a1a, type: 3}
-  Player: {fileID: 548960698139078064, guid: 50fc11cef7781de43986a7090e7b1ab2, type: 3}
+  Player: {fileID: 3454968245307852815, guid: 15a70cc98573d924cac24fc8ac5c8760, type: 3}
 --- !u!54 &2091006968681245955
 Rigidbody:
   m_ObjectHideFlags: 0
