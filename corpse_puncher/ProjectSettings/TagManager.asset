@@ -10,6 +10,8 @@ TagManager:
   - Slash
   - Runner
   - Spitter
+  - GameManager
+  - Punch
   layers:
   - Default
   - TransparentFX

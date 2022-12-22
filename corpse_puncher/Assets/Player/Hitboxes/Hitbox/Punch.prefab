@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7469301909657520308}
   m_Layer: 0
   m_Name: Punch
-  m_TagString: Untagged
+  m_TagString: Punch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 7946674898071252681, guid: 458e7c7e05626604fa8f3f38eeb0f2f5, type: 3}
+  anim: {fileID: 0}
 --- !u!114 &-7469301909657520308
 MonoBehaviour:
   m_ObjectHideFlags: 0
