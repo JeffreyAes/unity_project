@@ -55,7 +55,7 @@ public class SpitterScript : MonoBehaviour
                 transform.position = transform.position;
             }
 
-            
+
             if (Health <= 0)
             {
                 DestroySpitter();
@@ -76,12 +76,15 @@ public class SpitterScript : MonoBehaviour
             // Debug.Log("object name is " + hit.collider.name);
         }
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Attack")
         {
-            Instantiate(Corpse, pos, Quaternion.identity);
+            for (int i = 0; i < 5; i++)
+            {
+                Instantiate(Corpse, pos, Quaternion.identity);
+            }
             Health--;
         }
     }

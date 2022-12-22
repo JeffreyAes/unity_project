@@ -13,6 +13,7 @@ public class RunnerScript : EnemyMovement
 
     void Update()
     {
+        pos = gameObject.transform.position;
         if (agent.isStopped == true)
         {
             Invoke("AttackPlayer", timeFirstAttack);
@@ -30,7 +31,6 @@ public class RunnerScript : EnemyMovement
     //
     public void AttackPlayer()
     {
-        pos = gameObject.transform.position;
         agent.SetDestination(transform.position);
         if (!alreadyAttacked)
         {
@@ -48,7 +48,10 @@ public class RunnerScript : EnemyMovement
     {
         if (other.gameObject.tag == "Attack")
         {
-            Instantiate(Corpse, pos, Quaternion.identity);
+            for (int i = 0; i < 5; i++)
+            {
+                Instantiate(Corpse, pos, Quaternion.identity);
+            }
             Health--;
         }
     }

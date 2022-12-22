@@ -14,6 +14,7 @@ TagManager:
   - Punch
   - KillFloor
   - Attack
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -17,7 +17,6 @@ public class BulletScript : MonoBehaviour
         m_camera = GameObject.FindWithTag("MainCamera");
         rb_bullet = GetComponent<Rigidbody>();
         forward = m_camera.transform.forward;
-        print("bullet spawned");
         Invoke("RemoveObj", 3f);
     }
 
@@ -29,7 +28,7 @@ public class BulletScript : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         //this will remove objects of this tag
-        if (other.collider.CompareTag("Untagged"))
+        if (other.collider.CompareTag("Enemy"))
         {
             //TODO: maybe add particles
             //TODO: add logic to deal damage rather than destroying something

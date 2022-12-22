@@ -9,6 +9,8 @@ public class Punch : MonoBehaviour
     private HitStop hitStop;
     public GameObject bullet;
     public Animator anim;
+    public GameObject Corpse;
+
 
     void RemoveObj()
     {
@@ -47,6 +49,14 @@ public class Punch : MonoBehaviour
                 hitStop.Freeze();
                 Destroy(other.gameObject);
                 Instantiate(bullet, pos, rot);
+            }
+            else if (other.attachedRigidbody.CompareTag("Enemy"))
+            {
+                anim.Play("PunchConnected");
+                for (int i = 0; i < 5; i++)
+                {
+                    Instantiate(Corpse, pos, Quaternion.identity);
+                }
             }
         }
     }

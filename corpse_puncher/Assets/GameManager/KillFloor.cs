@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class KillFloor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    
+    void OnTriggerStay(Collider other)
+    {
+        print("I am a killbox");
+    }
 }
