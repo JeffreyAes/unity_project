@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     public NavMeshAgent agent;
     private bool blocked = false;
     private Rigidbody Enemybody;
-    public float rotationSpeed = 3.0f;
+    public float rotationSpeed = 4.0f;
     public float speed = 10.0f;
 
     public float timeBetweenAttacks;
